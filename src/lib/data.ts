@@ -19,264 +19,167 @@ export type Product = {
   reviews: number;
 };
 
+// Pool of 30 stable Unsplash fashion/woman photo IDs
+const POOL = [
+  "1558618666-fcd25c85cd64", // 0
+  "1515886657613-9f3515b0c78f", // 1
+  "1529139574466-a303027c1d8b", // 2
+  "1524504388940-b1c1722653e1", // 3
+  "1469334031218-e382a71b716b", // 4
+  "1487412720507-e7ab37603c6f", // 5
+  "1488161628813-04466f872be2", // 6
+  "1445205170230-053b83016050", // 7
+  "1485968579580-b6d095142e6e", // 8
+  "1539109136881-3be0616acf4b", // 9
+  "1496345875659-11f7dd282d1d", // 10
+  "1503342394128-c104d54dba01", // 11
+  "1556905055-8f358a7a47b2",   // 12
+  "1581044777550-4cfa60707c03", // 13
+  "1568702846914-96b305d2aaeb", // 14
+  "1610030469983-98e550d6193c", // 15 — confirmed working
+  "1534528741775-53994a69daeb", // 16
+  "1500917293891-ef815e43f2a0", // 17
+  "1507003211169-0a1dd7228f2d", // 18
+  "1544005313-94ddf0286df2",   // 19
+  "1517841905240-472988babdf9", // 20
+  "1438761681033-6461ffad8d80", // 21
+  "1525507119028-ed4c629a60a3", // 22
+  "1509631179647-0177331693ae", // 23
+  "1521572163474-6864f9cf17ab", // 24
+  "1598554747436-c9293d6a588f", // 25
+  "1617137968427-85924c800a22", // 26
+  "1509629927778-12d99a60df0c", // 27
+  "1512917774080-9991f1c4c750", // 28
+  "1614528048771-7a9b53dc7001", // 29
+];
+
+const img = (i: number, w = 600, h = 800): string => {
+  const id = POOL[i % POOL.length];
+  return `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&q=80&auto=format&fit=crop`;
+};
+
 export const categories = [
-  { name: "Kurti", slug: "kurti", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&q=80", icon: "👗" },
-  { name: "Suits", slug: "suits", image: "https://images.unsplash.com/photo-1583391733981-8498408ee4b6?w=400&q=80", icon: "👘" },
-  { name: "Cord Sets", slug: "cord-sets", image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=400&q=80", icon: "✨" },
-  { name: "Palazzo", slug: "palazzo", image: "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400&q=80", icon: "🌸" },
-  { name: "Dupatta", slug: "dupatta", image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400&q=80", icon: "🧣" },
-  { name: "T-Shirt", slug: "t-shirt", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80", icon: "👕" },
-  { name: "Lower", slug: "lower", image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400&q=80", icon: "👖" },
-  { name: "Shorts", slug: "shorts", image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=400&q=80", icon: "🩳" },
+  { name: "Kurti",     slug: "kurti",     image: img(0,  400, 500), icon: "👗" },
+  { name: "Suits",     slug: "suits",     image: img(1,  400, 500), icon: "👘" },
+  { name: "Cord Sets", slug: "cord-sets", image: img(2,  400, 500), icon: "✨" },
+  { name: "Palazzo",   slug: "palazzo",   image: img(3,  400, 500), icon: "🌸" },
+  { name: "Dupatta",   slug: "dupatta",   image: img(4,  400, 500), icon: "🧣" },
+  { name: "T-Shirt",   slug: "t-shirt",   image: img(5,  400, 500), icon: "👕" },
+  { name: "Lower",     slug: "lower",     image: img(6,  400, 500), icon: "👖" },
+  { name: "Shorts",    slug: "shorts",    image: img(7,  400, 500), icon: "🩳" },
 ];
 
 export const products: Product[] = [
-  {
-    id: "1",
-    name: "Floral Embroidered Suit Set",
-    slug: "floral-embroidered-suit-set",
-    description: "Beautiful floral embroidered suit set with intricate handwork. Perfect for festive occasions and casual wear. Made with premium cotton fabric for all-day comfort.",
-    category: "suits",
-    price: 2299,
-    salePrice: 1699,
-    images: [
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=80",
-      "https://images.unsplash.com/photo-1583391733981-8498408ee4b6?w=600&q=80",
-    ],
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-    colors: ["Blush Pink", "Ivory White", "Sage Green"],
-    stock: 25,
-    featured: true,
-    bestSeller: true,
-    newArrival: true,
-    tags: ["floral", "embroidered", "festive"],
-    status: "active",
-    rating: 4.8,
-    reviews: 124,
-  },
-  {
-    id: "2",
-    name: "Chikankari Straight Kurti",
-    slug: "chikankari-straight-kurti",
-    description: "Elegant chikankari work kurti with straight cut silhouette. Lightweight and breathable fabric ideal for summer days.",
-    category: "kurti",
-    price: 1299,
-    salePrice: 899,
-    images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=600&q=80",
-      "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&q=80",
-    ],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["White", "Light Blue", "Peach"],
-    stock: 40,
-    featured: true,
-    bestSeller: true,
-    newArrival: false,
-    tags: ["chikankari", "kurti", "casual"],
-    status: "active",
-    rating: 4.6,
-    reviews: 89,
-  },
-  {
-    id: "3",
-    name: "Printed Cord Set",
-    slug: "printed-cord-set",
-    description: "Trendy printed cord set with matching top and bottom. A perfect blend of style and comfort for modern women.",
-    category: "cord-sets",
-    price: 1899,
-    salePrice: 1499,
-    images: [
-      "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80",
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
-    ],
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Dusty Rose", "Mocha", "Cream"],
-    stock: 18,
-    featured: true,
-    bestSeller: true,
-    newArrival: true,
-    tags: ["coord-set", "printed", "trendy"],
-    status: "active",
-    rating: 4.7,
-    reviews: 67,
-  },
-  {
-    id: "4",
-    name: "Floral Organza Dupatta",
-    slug: "floral-organza-dupatta",
-    description: "Sheer organza dupatta with delicate floral prints and embroidered borders. Adds grace and elegance to any outfit.",
-    category: "dupatta",
-    price: 999,
-    salePrice: 699,
-    images: [
-      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&q=80",
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
-    ],
-    sizes: ["Free Size"],
-    colors: ["Pink", "Blue", "Yellow", "Green"],
-    stock: 50,
-    featured: false,
-    bestSeller: true,
-    newArrival: false,
-    tags: ["dupatta", "organza", "floral"],
-    status: "active",
-    rating: 4.5,
-    reviews: 43,
-  },
-  {
-    id: "5",
-    name: "Embroidered Anarkali Suit",
-    slug: "embroidered-anarkali-suit",
-    description: "Stunning embroidered anarkali suit with heavy dupatta. Perfect for weddings, parties, and festive celebrations.",
-    category: "suits",
-    price: 2899,
-    salePrice: 1999,
-    images: [
-      "https://images.unsplash.com/photo-1583391733981-8498408ee4b6?w=600&q=80",
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=80",
-    ],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Royal Blue", "Maroon", "Forest Green"],
-    stock: 12,
-    featured: true,
-    bestSeller: true,
-    newArrival: true,
-    tags: ["anarkali", "embroidered", "wedding"],
-    status: "active",
-    rating: 4.9,
-    reviews: 156,
-  },
-  {
-    id: "6",
-    name: "Casual Cotton Kurti",
-    slug: "casual-cotton-kurti",
-    description: "Comfortable everyday cotton kurti with minimal prints. Easy to style for office, college, or casual outings.",
-    category: "kurti",
-    price: 799,
-    salePrice: 599,
-    images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=600&q=80",
-      "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80",
-    ],
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: ["Mint", "Lavender", "Coral"],
-    stock: 60,
-    featured: false,
-    bestSeller: false,
-    newArrival: true,
-    tags: ["cotton", "casual", "everyday"],
-    status: "active",
-    rating: 4.3,
-    reviews: 32,
-  },
-  {
-    id: "7",
-    name: "Silk Palazzo Set",
-    slug: "silk-palazzo-set",
-    description: "Luxurious silk palazzo set with wide-leg trousers and matching top. Effortlessly chic for any occasion.",
-    category: "palazzo",
-    price: 1699,
-    salePrice: 1299,
-    images: [
-      "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&q=80",
-      "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80",
-    ],
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Champagne", "Rose Gold", "Midnight Blue"],
-    stock: 20,
-    featured: true,
-    bestSeller: false,
-    newArrival: true,
-    tags: ["palazzo", "silk", "elegant"],
-    status: "active",
-    rating: 4.6,
-    reviews: 28,
-  },
-  {
-    id: "8",
-    name: "Graphic Print T-Shirt",
-    slug: "graphic-print-t-shirt",
-    description: "Trendy graphic print tee with premium cotton blend. Soft, breathable and perfect for daily wear.",
-    category: "t-shirt",
-    price: 599,
-    salePrice: 449,
-    images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
-      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&q=80",
-    ],
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-    colors: ["White", "Black", "Light Grey"],
-    stock: 80,
-    featured: false,
-    bestSeller: false,
-    newArrival: true,
-    tags: ["t-shirt", "graphic", "casual"],
-    status: "active",
-    rating: 4.2,
-    reviews: 15,
-  },
+  // ─────────── KURTI (12) ───────────
+  { id:"1",  name:"Chikankari Straight Kurti",    slug:"chikankari-straight-kurti",    description:"Elegant chikankari work kurti with straight cut silhouette. Lightweight and breathable fabric ideal for summer days.", category:"kurti", price:1299, salePrice:899,  images:[img(0),img(1)],   sizes:["S","M","L","XL","XXL"],     colors:["White","Light Blue","Peach"],             stock:40,  featured:true,  bestSeller:true,  newArrival:false, tags:["chikankari","kurti","casual"],       status:"active", rating:4.6, reviews:89  },
+  { id:"2",  name:"Casual Cotton Kurti",           slug:"casual-cotton-kurti",           description:"Comfortable everyday cotton kurti with minimal prints. Easy to style for office, college, or casual outings.",        category:"kurti", price:799,  salePrice:599,  images:[img(2),img(3)],   sizes:["XS","S","M","L","XL"],      colors:["Mint","Lavender","Coral"],                stock:60,  featured:false, bestSeller:false, newArrival:true,  tags:["cotton","casual","everyday"],        status:"active", rating:4.3, reviews:32  },
+  { id:"9",  name:"Anarkali A-Line Kurti",         slug:"anarkali-aline-kurti",         description:"Flowy anarkali-style kurti with a flattering A-line silhouette. Features delicate thread embroidery at the yoke.",    category:"kurti", price:1599, salePrice:1099, images:[img(4),img(5)],   sizes:["S","M","L","XL","XXL"],     colors:["Rose","Teal","Mustard"],                  stock:28,  featured:true,  bestSeller:true,  newArrival:true,  tags:["anarkali","kurti","festive"],        status:"active", rating:4.7, reviews:63  },
+  { id:"10", name:"Printed Rayon Kurti",           slug:"printed-rayon-kurti",           description:"Vibrant digital printed rayon kurti with a relaxed fit. Perfect for summer outings and casual gatherings.",           category:"kurti", price:899,  salePrice:649,  images:[img(6),img(7)],   sizes:["XS","S","M","L","XL"],      colors:["Multicolor","Blue","Orange"],             stock:50,  featured:false, bestSeller:true,  newArrival:false, tags:["rayon","printed","casual"],          status:"active", rating:4.4, reviews:47  },
+  { id:"11", name:"Mirror Work Embroidered Kurti", slug:"mirror-work-embroidered-kurti", description:"Festive mirror work kurti with intricate hand-embroidery. A statement piece for weddings and celebrations.",         category:"kurti", price:1899, salePrice:1399, images:[img(8),img(9)],   sizes:["S","M","L","XL"],           colors:["Royal Blue","Crimson","Emerald"],         stock:18,  featured:true,  bestSeller:true,  newArrival:true,  tags:["mirror-work","embroidered","festive"],status:"active", rating:4.8, reviews:74  },
+  { id:"12", name:"Block Print Cotton Kurti",      slug:"block-print-cotton-kurti",      description:"Handcrafted block print kurti made with 100% cotton. Earthy tones and traditional motifs for an ethnic charm.",      category:"kurti", price:999,  salePrice:749,  images:[img(10),img(11)], sizes:["S","M","L","XL","XXL"],     colors:["Indigo","Terracotta","Olive"],            stock:35,  featured:false, bestSeller:false, newArrival:true,  tags:["block-print","cotton","handcraft"],  status:"active", rating:4.5, reviews:28  },
+  { id:"13", name:"Tie-Dye Kurti",                 slug:"tie-dye-kurti",                 description:"Trendy tie-dye kurti with vibrant colors and comfortable fit. A perfect blend of boho and ethnic fashion.",          category:"kurti", price:899,  salePrice:649,  images:[img(12),img(13)], sizes:["XS","S","M","L","XL"],      colors:["Pink-White","Blue-White","Purple-White"], stock:42,  featured:false, bestSeller:false, newArrival:true,  tags:["tie-dye","boho","trendy"],           status:"active", rating:4.2, reviews:19  },
+  { id:"14", name:"Long Kaftan Kurti",             slug:"long-kaftan-kurti",             description:"Breezy long kaftan kurti with side slits and printed fabric. Ideal for beach vacations and summer days.",            category:"kurti", price:1199, salePrice:849,  images:[img(14),img(15)], sizes:["Free Size","Plus Size"],    colors:["Turquoise","Saffron","Ivory"],            stock:30,  featured:false, bestSeller:false, newArrival:false, tags:["kaftan","long","summer"],            status:"active", rating:4.4, reviews:35  },
+  { id:"15", name:"Festive Silk Kurti",            slug:"festive-silk-kurti",            description:"Luxurious silk blend kurti with golden border print. A go-to choice for festivals, pujas, and celebrations.",       category:"kurti", price:1699, salePrice:1249, images:[img(16),img(17)], sizes:["S","M","L","XL"],           colors:["Gold","Magenta","Teal"],                  stock:20,  featured:true,  bestSeller:false, newArrival:false, tags:["silk","festive","premium"],          status:"active", rating:4.7, reviews:41  },
+  { id:"16", name:"Bandhani Print Kurti",          slug:"bandhani-print-kurti",          description:"Traditional Rajasthani bandhani print kurti with vibrant dots pattern. Celebrates Indian craft heritage.",           category:"kurti", price:1099, salePrice:799,  images:[img(18),img(19)], sizes:["S","M","L","XL","XXL"],     colors:["Red","Pink","Orange"],                    stock:25,  featured:false, bestSeller:true,  newArrival:false, tags:["bandhani","rajasthani","traditional"],status:"active", rating:4.6, reviews:52  },
+  { id:"17", name:"Linen Straight Kurti",          slug:"linen-straight-kurti",          description:"Minimalist linen kurti with subtle texture and clean lines. Perfect for formal and office wear.",                    category:"kurti", price:1399, salePrice:999,  images:[img(20),img(21)], sizes:["S","M","L","XL","XXL"],     colors:["Beige","Grey","White"],                   stock:32,  featured:false, bestSeller:false, newArrival:true,  tags:["linen","formal","minimalist"],       status:"active", rating:4.3, reviews:22  },
+  { id:"18", name:"Floral Short Kurti",            slug:"floral-short-kurti",            description:"Cute floral print short kurti that pairs well with palazzo or jeans. Fresh and youthful design.",                   category:"kurti", price:699,  salePrice:499,  images:[img(22),img(23)], sizes:["XS","S","M","L"],           colors:["Pink","Yellow","White"],                  stock:55,  featured:false, bestSeller:false, newArrival:true,  tags:["floral","short","casual"],           status:"active", rating:4.1, reviews:14  },
+
+  // ─────────── SUITS (11) ───────────
+  { id:"3",  name:"Floral Embroidered Suit Set",   slug:"floral-embroidered-suit-set",   description:"Beautiful floral embroidered suit set with intricate handwork. Perfect for festive occasions and casual wear.",     category:"suits", price:2299, salePrice:1699, images:[img(24),img(25)], sizes:["XS","S","M","L","XL","XXL"],colors:["Blush Pink","Ivory White","Sage Green"],  stock:25,  featured:true,  bestSeller:true,  newArrival:true,  tags:["floral","embroidered","festive"],    status:"active", rating:4.8, reviews:124 },
+  { id:"4",  name:"Embroidered Anarkali Suit",     slug:"embroidered-anarkali-suit",     description:"Stunning embroidered anarkali suit with heavy dupatta. Perfect for weddings, parties, and festive celebrations.",   category:"suits", price:2899, salePrice:1999, images:[img(26),img(27)], sizes:["S","M","L","XL","XXL"],     colors:["Royal Blue","Maroon","Forest Green"],     stock:12,  featured:true,  bestSeller:true,  newArrival:true,  tags:["anarkali","embroidered","wedding"],  status:"active", rating:4.9, reviews:156 },
+  { id:"19", name:"Cotton Punjabi Suit Set",       slug:"cotton-punjabi-suit-set",       description:"Classic Punjabi-style cotton suit with Phulkari dupatta. Comfortable for daily wear and casual occasions.",        category:"suits", price:1699, salePrice:1199, images:[img(28),img(29)], sizes:["S","M","L","XL","XXL"],     colors:["Sky Blue","Mustard","Peach"],             stock:30,  featured:false, bestSeller:true,  newArrival:false, tags:["punjabi","cotton","daily-wear"],     status:"active", rating:4.5, reviews:67  },
+  { id:"20", name:"Georgette Party Suit",          slug:"georgette-party-suit",          description:"Shimmery georgette suit with heavy lace border and matching dupatta. A showstopper for evening events.",            category:"suits", price:2499, salePrice:1799, images:[img(0),img(1)],   sizes:["S","M","L","XL"],           colors:["Black","Burgundy","Teal"],                stock:15,  featured:true,  bestSeller:false, newArrival:true,  tags:["georgette","party","evening"],       status:"active", rating:4.6, reviews:43  },
+  { id:"21", name:"Sharara Suit Set",              slug:"sharara-suit-set",              description:"Elegant sharara suit set with flared bottom and embroidered kurta. A royal look for wedding functions.",             category:"suits", price:2799, salePrice:1999, images:[img(2),img(3)],   sizes:["S","M","L","XL"],           colors:["Pink","Ivory","Lilac"],                   stock:10,  featured:true,  bestSeller:true,  newArrival:true,  tags:["sharara","wedding","royal"],         status:"active", rating:4.9, reviews:88  },
+  { id:"22", name:"Chanderi Silk Suit",            slug:"chanderi-silk-suit",            description:"Lightweight Chanderi silk suit with golden zari borders. A premium pick for festive and formal events.",            category:"suits", price:2199, salePrice:1599, images:[img(4),img(5)],   sizes:["S","M","L","XL"],           colors:["Gold","Sage","Mauve"],                    stock:18,  featured:false, bestSeller:false, newArrival:false, tags:["chanderi","silk","premium"],         status:"active", rating:4.7, reviews:39  },
+  { id:"23", name:"Patiala Salwar Suit",           slug:"patiala-salwar-suit",           description:"Comfortable Patiala salwar suit with vibrant prints and dupatta. Classic Punjabi ethnic wear done right.",          category:"suits", price:1499, salePrice:1099, images:[img(6),img(7)],   sizes:["S","M","L","XL","XXL"],     colors:["Orange","Green","Red"],                   stock:28,  featured:false, bestSeller:true,  newArrival:false, tags:["patiala","ethnic","comfortable"],    status:"active", rating:4.4, reviews:55  },
+  { id:"24", name:"Gota Patti Suit",               slug:"gota-patti-suit",               description:"Rajasthani gota patti work suit with intricate ribbon embroidery. A festive treasure from Jaipur.",                 category:"suits", price:2599, salePrice:1899, images:[img(8),img(9)],   sizes:["S","M","L","XL"],           colors:["Pink","Yellow","Mint"],                   stock:14,  featured:true,  bestSeller:true,  newArrival:false, tags:["gota-patti","rajasthani","festive"], status:"active", rating:4.8, reviews:71  },
+  { id:"25", name:"Lace Border Suit",              slug:"lace-border-suit",              description:"Delicate lace border suit with chiffon dupatta. A subtle, sophisticated choice for lunches and outings.",           category:"suits", price:1799, salePrice:1299, images:[img(10),img(11)], sizes:["S","M","L","XL"],           colors:["White","Beige","Blush"],                  stock:22,  featured:false, bestSeller:false, newArrival:true,  tags:["lace","subtle","lunch-wear"],        status:"active", rating:4.3, reviews:26  },
+  { id:"26", name:"Digital Print Suit Set",        slug:"digital-print-suit-set",        description:"Bold digital print suit set with full-length dupatta. Vibrant colors that make a statement at any occasion.",      category:"suits", price:1899, salePrice:1349, images:[img(12),img(13)], sizes:["S","M","L","XL","XXL"],     colors:["Multicolor","Blue-Multi","Pink-Multi"],   stock:33,  featured:false, bestSeller:false, newArrival:true,  tags:["digital-print","vibrant","casual"],  status:"active", rating:4.2, reviews:18  },
+  { id:"27", name:"Velvet Winter Suit",            slug:"velvet-winter-suit",            description:"Rich velvet suit set perfect for winter weddings and festive evenings. Warm, luxurious and incredibly elegant.",    category:"suits", price:2999, salePrice:2199, images:[img(14),img(15)], sizes:["S","M","L","XL"],           colors:["Deep Red","Navy","Forest Green"],         stock:8,   featured:true,  bestSeller:false, newArrival:false, tags:["velvet","winter","luxury"],          status:"active", rating:4.9, reviews:34  },
+
+  // ─────────── CORD SETS (10) ───────────
+  { id:"5",  name:"Printed Cord Set",              slug:"printed-cord-set",              description:"Trendy printed cord set with matching top and bottom. A perfect blend of style and comfort for modern women.",       category:"cord-sets", price:1899, salePrice:1499, images:[img(16),img(17)], sizes:["S","M","L","XL"],       colors:["Dusty Rose","Mocha","Cream"],             stock:18, featured:true,  bestSeller:true,  newArrival:true,  tags:["coord-set","printed","trendy"],      status:"active", rating:4.7, reviews:67  },
+  { id:"28", name:"Linen Co-ord Set",              slug:"linen-coord-set",              description:"Breathable linen co-ord set with relaxed fit. Minimalist design that looks put-together effortlessly.",              category:"cord-sets", price:1799, salePrice:1299, images:[img(18),img(19)], sizes:["S","M","L","XL"],       colors:["Cream","Sage","Camel"],                   stock:24, featured:true,  bestSeller:false, newArrival:true,  tags:["linen","minimal","casual"],          status:"active", rating:4.6, reviews:41  },
+  { id:"29", name:"Floral Crop Top Co-ord Set",    slug:"floral-crop-coord-set",         description:"Cute floral crop top and wide-leg pants co-ord set. Youthful, vibrant and perfect for brunch dates.",              category:"cord-sets", price:1599, salePrice:1199, images:[img(20),img(21)], sizes:["XS","S","M","L","XL"],  colors:["Pink","Yellow","Lavender"],               stock:30, featured:true,  bestSeller:true,  newArrival:true,  tags:["floral","crop-top","brunch"],        status:"active", rating:4.8, reviews:59  },
+  { id:"30", name:"Striped Coord Set",             slug:"striped-coord-set",             description:"Chic striped coord set with a classic look. Versatile enough for casual outings and office wear.",                  category:"cord-sets", price:1499, salePrice:1099, images:[img(22),img(23)], sizes:["S","M","L","XL"],       colors:["Black-White","Navy-White","Olive-Beige"], stock:35, featured:false, bestSeller:true,  newArrival:false, tags:["striped","classic","versatile"],     status:"active", rating:4.5, reviews:48  },
+  { id:"31", name:"Embroidered Ethnic Coord Set",  slug:"embroidered-ethnic-coord-set",  description:"Festive ethnic coord set with detailed embroidery on the top and matching palazzo pants.",                         category:"cord-sets", price:2199, salePrice:1649, images:[img(24),img(25)], sizes:["S","M","L","XL"],       colors:["Peach","Turquoise","Maroon"],             stock:16, featured:true,  bestSeller:true,  newArrival:false, tags:["embroidered","ethnic","festive"],    status:"active", rating:4.7, reviews:33  },
+  { id:"32", name:"Tie-Dye Coord Set",             slug:"tie-dye-coord-set",             description:"Boho-chic tie-dye coord set with matching top and wide-leg pants. Fun, colorful and totally on-trend.",            category:"cord-sets", price:1399, salePrice:999,  images:[img(26),img(27)], sizes:["XS","S","M","L"],       colors:["Pink-Purple","Blue-Green","Yellow-Orange"],stock:28, featured:false, bestSeller:false, newArrival:true,  tags:["tie-dye","boho","colorful"],         status:"active", rating:4.3, reviews:22  },
+  { id:"33", name:"Ruffle Top Coord Set",          slug:"ruffle-top-coord-set",          description:"Feminine ruffle top with matching straight pants. Soft fabric and elegant styling for every occasion.",             category:"cord-sets", price:1699, salePrice:1249, images:[img(28),img(29)], sizes:["S","M","L","XL"],       colors:["Blush","White","Lilac"],                  stock:20, featured:false, bestSeller:false, newArrival:true,  tags:["ruffle","feminine","elegant"],       status:"active", rating:4.4, reviews:29  },
+  { id:"34", name:"Geometric Print Coord Set",     slug:"geometric-print-coord-set",     description:"Bold geometric print coord set with a structured fit. A modern, artistic look for the fashion-forward woman.",     category:"cord-sets", price:1599, salePrice:1149, images:[img(0),img(1)],   sizes:["S","M","L","XL"],       colors:["Black","Brown","Teal"],                   stock:22, featured:false, bestSeller:false, newArrival:false, tags:["geometric","modern","bold"],         status:"active", rating:4.2, reviews:17  },
+  { id:"35", name:"Mandarin Collar Ethnic Coord Set",slug:"mandarin-collar-ethnic-coord-set",description:"Mandarin collar kurta with matching palazzo pants. A sophisticated ethnic co-ord with Indo-western flair.",     category:"cord-sets", price:1999, salePrice:1499, images:[img(2),img(3)],   sizes:["S","M","L","XL","XXL"], colors:["Off-White","Sky Blue","Mustard"],         stock:18, featured:true,  bestSeller:false, newArrival:false, tags:["mandarin","ethnic","indo-western"],  status:"active", rating:4.6, reviews:37  },
+  { id:"36", name:"Satin Crop Coord Set",          slug:"satin-crop-coord-set",          description:"Glossy satin crop top with wide-leg pants. A luxe evening look that transitions from day to night.",               category:"cord-sets", price:2099, salePrice:1549, images:[img(4),img(5)],   sizes:["S","M","L","XL"],       colors:["Champagne","Black","Deep Wine"],          stock:14, featured:true,  bestSeller:true,  newArrival:true,  tags:["satin","crop","evening"],            status:"active", rating:4.8, reviews:45  },
+
+  // ─────────── PALAZZO (10) ───────────
+  { id:"6",  name:"Silk Palazzo Set",              slug:"silk-palazzo-set",              description:"Luxurious silk palazzo set with wide-leg trousers and matching top. Effortlessly chic for any occasion.",           category:"palazzo", price:1699, salePrice:1299, images:[img(6),img(7)],   sizes:["S","M","L","XL"],           colors:["Champagne","Rose Gold","Midnight Blue"],  stock:20, featured:true,  bestSeller:false, newArrival:true,  tags:["palazzo","silk","elegant"],          status:"active", rating:4.6, reviews:28  },
+  { id:"37", name:"Floral Palazzo Set",            slug:"floral-palazzo-set",            description:"Beautiful floral printed palazzo with matching kurti. Light and flowy fabric perfect for summer.",                  category:"palazzo", price:1399, salePrice:999,  images:[img(8),img(9)],   sizes:["S","M","L","XL","XXL"],     colors:["Pink","Mint","Yellow"],                   stock:28, featured:false, bestSeller:true,  newArrival:false, tags:["floral","palazzo","summer"],         status:"active", rating:4.5, reviews:54  },
+  { id:"38", name:"Rayon Palazzo Pants",           slug:"rayon-palazzo-pants",           description:"Comfortable rayon palazzo pants with elastic waistband. Mix and match with any top for effortless style.",         category:"palazzo", price:799,  salePrice:549,  images:[img(10),img(11)], sizes:["S","M","L","XL","XXL"],     colors:["Black","Navy","Maroon","Olive"],          stock:60, featured:false, bestSeller:true,  newArrival:false, tags:["rayon","palazzo","everyday"],        status:"active", rating:4.4, reviews:76  },
+  { id:"39", name:"Embroidered Palazzo Set",       slug:"embroidered-palazzo-set",       description:"Festive palazzo set with embroidered kurta top and matching wide-leg pants. Perfect for celebrations.",            category:"palazzo", price:1999, salePrice:1499, images:[img(12),img(13)], sizes:["S","M","L","XL"],           colors:["Peach","Green","Pink"],                   stock:16, featured:true,  bestSeller:true,  newArrival:true,  tags:["embroidered","palazzo","festive"],   status:"active", rating:4.8, reviews:42  },
+  { id:"40", name:"Striped Palazzo Pants",         slug:"striped-palazzo-pants",         description:"Stylish vertical striped palazzo pants with a flattering drape. Pair with a solid crop top for a chic look.",     category:"palazzo", price:899,  salePrice:649,  images:[img(14),img(15)], sizes:["S","M","L","XL"],           colors:["White-Black","Blue-White","Pink-White"],  stock:35, featured:false, bestSeller:false, newArrival:true,  tags:["striped","palazzo","casual"],        status:"active", rating:4.3, reviews:25  },
+  { id:"41", name:"Cotton Palazzo Kurti Set",      slug:"cotton-palazzo-kurti-set",      description:"Breathable cotton palazzo with matching kurti. A complete ethnic look for everyday comfort.",                      category:"palazzo", price:1299, salePrice:949,  images:[img(16),img(17)], sizes:["S","M","L","XL","XXL"],     colors:["Teal","Mustard","White"],                 stock:40, featured:false, bestSeller:true,  newArrival:false, tags:["cotton","palazzo","daily-wear"],     status:"active", rating:4.5, reviews:61  },
+  { id:"42", name:"Georgette Flared Palazzo",      slug:"georgette-flared-palazzo",      description:"Sheer georgette palazzo with a beautiful flare. Ideal for parties and formal functions.",                          category:"palazzo", price:1199, salePrice:849,  images:[img(18),img(19)], sizes:["S","M","L","XL"],           colors:["Wine","Teal","Black"],                    stock:22, featured:false, bestSeller:false, newArrival:false, tags:["georgette","flared","party"],        status:"active", rating:4.4, reviews:31  },
+  { id:"43", name:"Ikat Print Palazzo Set",        slug:"ikat-print-palazzo-set",        description:"Traditional ikat woven print palazzo set with kurti. A beautiful fusion of handloom heritage and modern fashion.", category:"palazzo", price:1599, salePrice:1149, images:[img(20),img(21)], sizes:["S","M","L","XL"],           colors:["Blue-Red","Green-Black","Orange-White"],  stock:20, featured:true,  bestSeller:false, newArrival:true,  tags:["ikat","handloom","heritage"],        status:"active", rating:4.6, reviews:28  },
+  { id:"44", name:"Velvet Palazzo Set",            slug:"velvet-palazzo-set",            description:"Rich velvet palazzo set for winter festivities. Opulent fabric with a royal finish.",                              category:"palazzo", price:1899, salePrice:1399, images:[img(22),img(23)], sizes:["S","M","L","XL"],           colors:["Deep Purple","Bottle Green","Rust"],      stock:12, featured:true,  bestSeller:false, newArrival:false, tags:["velvet","winter","luxe"],            status:"active", rating:4.7, reviews:19  },
+  { id:"45", name:"Tie-Dye Palazzo Pants",         slug:"tie-dye-palazzo-pants",         description:"Funky tie-dye palazzo pants with a comfortable fit. Great for festivals, fairs, and casual hangouts.",            category:"palazzo", price:899,  salePrice:649,  images:[img(24),img(25)], sizes:["S","M","L","XL","Free Size"],colors:["Pink-Purple","Blue-Teal","Orange-Yellow"], stock:38, featured:false, bestSeller:false, newArrival:true,  tags:["tie-dye","palazzo","festival"],      status:"active", rating:4.2, reviews:21  },
+
+  // ─────────── DUPATTA (10) ───────────
+  { id:"7",  name:"Floral Organza Dupatta",        slug:"floral-organza-dupatta",        description:"Sheer organza dupatta with delicate floral prints and embroidered borders. Adds grace and elegance to any outfit.", category:"dupatta", price:999,  salePrice:699,  images:[img(26),img(27)], sizes:["Free Size"], colors:["Pink","Blue","Yellow","Green"],           stock:50, featured:false, bestSeller:true,  newArrival:false, tags:["dupatta","organza","floral"],        status:"active", rating:4.5, reviews:43  },
+  { id:"46", name:"Bandhani Dupatta",              slug:"bandhani-dupatta",              description:"Traditional Rajasthani bandhani tie-dye dupatta with vibrant dots pattern. A bright addition to any ethnic outfit.", category:"dupatta", price:799,  salePrice:549,  images:[img(28),img(29)], sizes:["Free Size"], colors:["Red","Pink","Orange","Yellow"],           stock:45, featured:false, bestSeller:true,  newArrival:false, tags:["bandhani","rajasthani","colorful"],  status:"active", rating:4.6, reviews:58  },
+  { id:"47", name:"Phulkari Embroidered Dupatta",  slug:"phulkari-embroidered-dupatta",  description:"Punjabi phulkari embroidered dupatta with rich floral threadwork. A heritage piece to treasure.",                category:"dupatta", price:1199, salePrice:849,  images:[img(0),img(1)],   sizes:["Free Size"], colors:["Red","Maroon","Black"],                   stock:30, featured:true,  bestSeller:true,  newArrival:false, tags:["phulkari","punjabi","embroidered"],  status:"active", rating:4.8, reviews:67  },
+  { id:"48", name:"Chiffon Printed Dupatta",       slug:"chiffon-printed-dupatta",       description:"Lightweight chiffon dupatta with beautiful digital prints. Drapes elegantly with any ethnic outfit.",              category:"dupatta", price:599,  salePrice:399,  images:[img(2),img(3)],   sizes:["Free Size"], colors:["Multicolor","Blue","Green","Pink"],       stock:60, featured:false, bestSeller:false, newArrival:true,  tags:["chiffon","printed","lightweight"],   status:"active", rating:4.3, reviews:34  },
+  { id:"49", name:"Silk Dupatta with Tassels",     slug:"silk-dupatta-with-tassels",     description:"Premium silk dupatta with handcrafted tassel border. Adds a luxurious touch to festive ensembles.",              category:"dupatta", price:1399, salePrice:999,  images:[img(4),img(5)],   sizes:["Free Size"], colors:["Gold","Silver","Maroon"],                 stock:25, featured:true,  bestSeller:false, newArrival:false, tags:["silk","tassels","festive"],          status:"active", rating:4.7, reviews:41  },
+  { id:"50", name:"Mirror Work Dupatta",           slug:"mirror-work-dupatta",           description:"Gujarati-style mirror work dupatta that catches every eye. Pairs beautifully with plain ethnic outfits.",          category:"dupatta", price:1099, salePrice:799,  images:[img(6),img(7)],   sizes:["Free Size"], colors:["Multicolor","Green","Orange"],            stock:28, featured:true,  bestSeller:true,  newArrival:true,  tags:["mirror-work","gujarati","festive"],  status:"active", rating:4.8, reviews:53  },
+  { id:"51", name:"Block Print Dupatta",           slug:"block-print-dupatta",           description:"Hand block-printed cotton dupatta with traditional motifs. Earthy tones and artisan craftsmanship.",               category:"dupatta", price:699,  salePrice:499,  images:[img(8),img(9)],   sizes:["Free Size"], colors:["Indigo","Terracotta","Olive"],            stock:42, featured:false, bestSeller:false, newArrival:true,  tags:["block-print","cotton","artisan"],    status:"active", rating:4.4, reviews:29  },
+  { id:"52", name:"Sequin Embellished Dupatta",    slug:"sequin-embellished-dupatta",    description:"Shimmery sequin dupatta perfect for evening parties and wedding functions.",                                       category:"dupatta", price:899,  salePrice:649,  images:[img(10),img(11)], sizes:["Free Size"], colors:["Gold","Silver","Rose Gold"],              stock:20, featured:true,  bestSeller:false, newArrival:true,  tags:["sequin","glamorous","party"],        status:"active", rating:4.6, reviews:35  },
+  { id:"53", name:"Net Embroidered Dupatta",       slug:"net-embroidered-dupatta",       description:"Sheer net dupatta with intricate floral embroidery. A dreamy, ethereal accessory for brides and festivities.",    category:"dupatta", price:1299, salePrice:949,  images:[img(12),img(13)], sizes:["Free Size"], colors:["White","Ivory","Pink"],                   stock:18, featured:false, bestSeller:false, newArrival:false, tags:["net","embroidered","bridal"],        status:"active", rating:4.5, reviews:27  },
+  { id:"54", name:"Cotton Plain Dupatta",          slug:"cotton-plain-dupatta",          description:"Simple cotton dupatta in solid colors. An everyday essential that matches any kurti or suit.",                     category:"dupatta", price:399,  salePrice:299,  images:[img(14),img(15)], sizes:["Free Size"], colors:["White","Black","Peach","Mint","Yellow"],  stock:80, featured:false, bestSeller:false, newArrival:false, tags:["cotton","plain","everyday"],         status:"active", rating:4.1, reviews:48  },
+
+  // ─────────── T-SHIRT (10) ───────────
+  { id:"8",  name:"Graphic Print T-Shirt",         slug:"graphic-print-t-shirt",         description:"Trendy graphic print tee with premium cotton blend. Soft, breathable and perfect for daily wear.",                category:"t-shirt", price:599,  salePrice:449,  images:[img(16),img(17)], sizes:["XS","S","M","L","XL","XXL"], colors:["White","Black","Light Grey"],             stock:80, featured:false, bestSeller:false, newArrival:true,  tags:["t-shirt","graphic","casual"],        status:"active", rating:4.2, reviews:15  },
+  { id:"55", name:"Basic Round Neck T-Shirt",      slug:"basic-round-neck-tshirt",       description:"Everyday basic round neck tee in 100% cotton. Soft, durable, and essential for every wardrobe.",                 category:"t-shirt", price:399,  salePrice:299,  images:[img(18),img(19)], sizes:["XS","S","M","L","XL","XXL"], colors:["White","Black","Navy","Grey","Pink"],     stock:100,featured:false, bestSeller:true,  newArrival:false, tags:["basic","round-neck","everyday"],     status:"active", rating:4.3, reviews:92  },
+  { id:"56", name:"V-Neck Cotton Tee",             slug:"v-neck-cotton-tee",             description:"Flattering V-neck cotton tee with a slim fit. A wardrobe staple that pairs with anything.",                      category:"t-shirt", price:449,  salePrice:349,  images:[img(20),img(21)], sizes:["XS","S","M","L","XL"],      colors:["White","Blush","Lavender","Mint"],        stock:70, featured:false, bestSeller:true,  newArrival:false, tags:["v-neck","slim-fit","cotton"],        status:"active", rating:4.4, reviews:64  },
+  { id:"57", name:"Tie-Dye T-Shirt",               slug:"tie-dye-tshirt",                description:"Vibrant tie-dye tee with a relaxed fit. Each piece is unique with its own color pattern.",                       category:"t-shirt", price:499,  salePrice:369,  images:[img(22),img(23)], sizes:["XS","S","M","L","XL"],      colors:["Pink-White","Blue-White","Purple-White"], stock:50, featured:false, bestSeller:false, newArrival:true,  tags:["tie-dye","casual","trendy"],         status:"active", rating:4.2, reviews:28  },
+  { id:"58", name:"Crop Top T-Shirt",              slug:"crop-top-tshirt",               description:"Trendy cropped tee that hits just above the waist. Perfect with high-waist jeans, skirts, or palazzo.",          category:"t-shirt", price:449,  salePrice:329,  images:[img(24),img(25)], sizes:["XS","S","M","L"],           colors:["White","Black","Pink","Yellow"],          stock:60, featured:true,  bestSeller:true,  newArrival:true,  tags:["crop-top","trendy","casual"],        status:"active", rating:4.5, reviews:47  },
+  { id:"59", name:"Oversized Drop Shoulder Tee",   slug:"oversized-drop-shoulder-tee",   description:"Comfortable oversized drop shoulder tee with a boxy fit. The ultimate casual style statement.",                  category:"t-shirt", price:599,  salePrice:449,  images:[img(26),img(27)], sizes:["S","M","L","XL","XXL"],     colors:["Off-White","Grey","Black","Olive"],       stock:55, featured:false, bestSeller:true,  newArrival:true,  tags:["oversized","boxy","casual"],         status:"active", rating:4.6, reviews:58  },
+  { id:"60", name:"Striped T-Shirt",               slug:"striped-tshirt",                description:"Classic horizontal striped tee in cotton jersey. Timeless style that never goes out of fashion.",                 category:"t-shirt", price:499,  salePrice:369,  images:[img(28),img(29)], sizes:["XS","S","M","L","XL"],      colors:["Navy-White","Black-White","Red-White"],   stock:65, featured:false, bestSeller:false, newArrival:false, tags:["striped","classic","cotton"],        status:"active", rating:4.3, reviews:36  },
+  { id:"61", name:"Printed Slogan Tee",            slug:"printed-slogan-tee",            description:"Fun slogan print tee with bold typography. Express yourself with attitude and style.",                            category:"t-shirt", price:499,  salePrice:369,  images:[img(0),img(1)],   sizes:["XS","S","M","L","XL"],      colors:["White","Black","Coral"],                  stock:45, featured:false, bestSeller:false, newArrival:true,  tags:["slogan","typography","fun"],         status:"active", rating:4.2, reviews:24  },
+  { id:"62", name:"Floral Embroidered Tee",        slug:"floral-embroidered-tee",        description:"Soft cotton tee with delicate floral embroidery on the chest. A sweet, feminine touch for everyday dressing.",    category:"t-shirt", price:699,  salePrice:499,  images:[img(2),img(3)],   sizes:["XS","S","M","L","XL"],      colors:["White","Lavender","Peach"],               stock:38, featured:true,  bestSeller:false, newArrival:true,  tags:["embroidered","floral","feminine"],   status:"active", rating:4.5, reviews:33  },
+  { id:"63", name:"Linen Boxy T-Shirt",            slug:"linen-boxy-tshirt",             description:"Breathable linen tee with a relaxed boxy fit. Minimal, modern, and incredibly comfortable.",                    category:"t-shirt", price:749,  salePrice:549,  images:[img(4),img(5)],   sizes:["S","M","L","XL"],           colors:["Beige","White","Sage"],                   stock:30, featured:false, bestSeller:false, newArrival:false, tags:["linen","boxy","minimal"],            status:"active", rating:4.4, reviews:19  },
+
+  // ─────────── LOWER (10) ───────────
+  { id:"64", name:"Cotton Track Pants",            slug:"cotton-track-pants",            description:"Comfortable cotton track pants with elasticated waist and drawstring. Great for home, gym, and casual wear.",     category:"lower", price:699,  salePrice:499,  images:[img(6),img(7)],   sizes:["S","M","L","XL","XXL"],     colors:["Black","Navy","Grey","Olive"],            stock:80, featured:false, bestSeller:true,  newArrival:false, tags:["track-pants","casual","comfort"],    status:"active", rating:4.4, reviews:88  },
+  { id:"65", name:"Jogger Pants",                  slug:"jogger-pants",                  description:"Tapered jogger pants with ribbed cuffs and deep pockets. Athleisure style for active women on the go.",          category:"lower", price:899,  salePrice:649,  images:[img(8),img(9)],   sizes:["XS","S","M","L","XL"],      colors:["Black","Grey","Blush","Olive"],           stock:55, featured:true,  bestSeller:true,  newArrival:true,  tags:["jogger","athleisure","comfort"],     status:"active", rating:4.6, reviews:72  },
+  { id:"66", name:"Harem Pants",                   slug:"harem-pants",                   description:"Boho harem pants with a relaxed drop-crotch fit. Perfect for yoga, travel, and casual lounging.",               category:"lower", price:799,  salePrice:579,  images:[img(10),img(11)], sizes:["S","M","L","XL","Free Size"],colors:["Multicolor","Black","Cream"],             stock:40, featured:false, bestSeller:false, newArrival:true,  tags:["harem","boho","yoga"],               status:"active", rating:4.3, reviews:45  },
+  { id:"67", name:"Printed Pyjama",                slug:"printed-pyjama",                description:"Cozy printed pyjama pants perfect for lounging at home. Soft fabric with a relaxed fit and elastic waist.",      category:"lower", price:599,  salePrice:429,  images:[img(12),img(13)], sizes:["S","M","L","XL","XXL"],     colors:["Floral-Pink","Check-Blue","Stripe-White"],stock:65, featured:false, bestSeller:true,  newArrival:false, tags:["pyjama","lounge","printed"],         status:"active", rating:4.5, reviews:93  },
+  { id:"68", name:"Wide Leg Trousers",             slug:"wide-leg-trousers",             description:"Chic wide-leg trousers in flowy fabric. High-waist design with a flattering silhouette for all body types.",    category:"lower", price:1099, salePrice:799,  images:[img(14),img(15)], sizes:["S","M","L","XL"],           colors:["Black","Beige","Navy","Olive"],           stock:35, featured:true,  bestSeller:true,  newArrival:true,  tags:["wide-leg","trousers","high-waist"],  status:"active", rating:4.7, reviews:54  },
+  { id:"69", name:"Flared Bell Bottom Pants",      slug:"flared-bell-bottom-pants",      description:"Retro-inspired bell bottom pants with a modern twist. Flattering A-line flare from the knee down.",             category:"lower", price:999,  salePrice:729,  images:[img(16),img(17)], sizes:["S","M","L","XL"],           colors:["Black","White","Maroon"],                 stock:28, featured:false, bestSeller:false, newArrival:true,  tags:["flared","bell-bottom","retro"],      status:"active", rating:4.4, reviews:31  },
+  { id:"70", name:"Cigarette Pants",               slug:"cigarette-pants",               description:"Slim-fit cigarette pants that elongate the legs. A polished choice for office and formal events.",               category:"lower", price:1199, salePrice:849,  images:[img(18),img(19)], sizes:["XS","S","M","L","XL"],      colors:["Black","Cream","Camel","Navy"],           stock:40, featured:true,  bestSeller:true,  newArrival:false, tags:["cigarette","slim-fit","formal"],     status:"active", rating:4.6, reviews:62  },
+  { id:"71", name:"Cotton Culottes",               slug:"cotton-culottes",               description:"Mid-calf cotton culottes that combine the ease of a skirt with the coverage of pants.",                          category:"lower", price:899,  salePrice:649,  images:[img(20),img(21)], sizes:["S","M","L","XL"],           colors:["White","Sage","Blush","Lavender"],        stock:32, featured:false, bestSeller:false, newArrival:true,  tags:["culottes","cotton","airy"],          status:"active", rating:4.3, reviews:28  },
+  { id:"72", name:"Churidar Leggings",             slug:"churidar-leggings",             description:"Stretchy churidar-style leggings that pair perfectly with kurtis. Comfortable, wrinkle-resistant fabric.",       category:"lower", price:499,  salePrice:349,  images:[img(22),img(23)], sizes:["S","M","L","XL","XXL"],     colors:["Black","Navy","Maroon","White","Skin"],   stock:90, featured:false, bestSeller:true,  newArrival:false, tags:["churidar","leggings","kurti-pair"],  status:"active", rating:4.5, reviews:105 },
+  { id:"73", name:"Lounge Pants",                  slug:"lounge-pants",                  description:"Ultra-soft lounge pants for the perfect lazy day. Snug waistband with functional side pockets.",                 category:"lower", price:749,  salePrice:549,  images:[img(24),img(25)], sizes:["S","M","L","XL","XXL"],     colors:["Grey","Lavender","Pink","Cream"],         stock:50, featured:false, bestSeller:false, newArrival:false, tags:["lounge","soft","casual"],            status:"active", rating:4.4, reviews:47  },
+
+  // ─────────── SHORTS (10) ───────────
+  { id:"74", name:"Printed Cotton Shorts",         slug:"printed-cotton-shorts",         description:"Fun printed cotton shorts with an elasticated waistband. Perfect for summer afternoons and quick outings.",      category:"shorts", price:549,  salePrice:399,  images:[img(26),img(27)], sizes:["XS","S","M","L","XL"],      colors:["Floral-Pink","Stripe-Blue","Paisley-Green"],stock:60,featured:false, bestSeller:true,  newArrival:false, tags:["printed","cotton","summer"],         status:"active", rating:4.3, reviews:74  },
+  { id:"75", name:"Floral Shorts",                 slug:"floral-shorts",                 description:"Breezy floral shorts in lightweight fabric. A fresh and feminine pick for warm weather.",                       category:"shorts", price:599,  salePrice:449,  images:[img(28),img(29)], sizes:["XS","S","M","L"],           colors:["Pink","Yellow","White"],                  stock:48, featured:true,  bestSeller:true,  newArrival:true,  tags:["floral","summer","feminine"],        status:"active", rating:4.5, reviews:52  },
+  { id:"76", name:"Athletic Shorts",               slug:"athletic-shorts",               description:"Quick-dry athletic shorts with a built-in liner. Ideal for workouts, yoga, and outdoor activities.",             category:"shorts", price:699,  salePrice:499,  images:[img(0),img(1)],   sizes:["XS","S","M","L","XL"],      colors:["Black","Navy","Teal","Pink"],             stock:70, featured:false, bestSeller:true,  newArrival:false, tags:["athletic","sports","quick-dry"],     status:"active", rating:4.6, reviews:83  },
+  { id:"77", name:"Paperbag Waist Shorts",         slug:"paperbag-waist-shorts",         description:"Trendy paperbag waist shorts with a tie-belt detail. Flattering and stylish for casual brunches.",              category:"shorts", price:799,  salePrice:579,  images:[img(2),img(3)],   sizes:["XS","S","M","L","XL"],      colors:["Beige","White","Black"],                  stock:35, featured:true,  bestSeller:false, newArrival:true,  tags:["paperbag","trendy","casual"],        status:"active", rating:4.4, reviews:31  },
+  { id:"78", name:"Ruffle Hem Shorts",             slug:"ruffle-hem-shorts",             description:"Cute ruffle hem shorts that add a feminine flair to your summer look. Soft chiffon fabric.",                    category:"shorts", price:699,  salePrice:499,  images:[img(4),img(5)],   sizes:["XS","S","M","L"],           colors:["Blush","White","Lavender"],               stock:28, featured:false, bestSeller:false, newArrival:true,  tags:["ruffle","feminine","chiffon"],       status:"active", rating:4.3, reviews:22  },
+  { id:"79", name:"Basic Cotton Shorts",           slug:"basic-cotton-shorts",           description:"Simple solid-color cotton shorts. An everyday essential for comfort at home and quick errands.",                 category:"shorts", price:399,  salePrice:299,  images:[img(6),img(7)],   sizes:["XS","S","M","L","XL","XXL"], colors:["Black","White","Navy","Grey","Pink"],    stock:100,featured:false, bestSeller:true,  newArrival:false, tags:["basic","cotton","everyday"],         status:"active", rating:4.2, reviews:97  },
+  { id:"80", name:"Tie-Dye Shorts",                slug:"tie-dye-shorts",                description:"Funky tie-dye shorts in vibrant color gradients. Each pair is uniquely dyed for a one-of-a-kind look.",         category:"shorts", price:499,  salePrice:369,  images:[img(8),img(9)],   sizes:["XS","S","M","L","XL"],      colors:["Pink-Purple","Blue-Green","Yellow-Orange"],stock:42,featured:false, bestSeller:false, newArrival:true,  tags:["tie-dye","colorful","casual"],       status:"active", rating:4.2, reviews:19  },
+  { id:"81", name:"Linen Bermuda Shorts",          slug:"linen-bermuda-shorts",          description:"Knee-length linen bermuda shorts with side pockets. Refined, breathable, and summer-perfect.",                 category:"shorts", price:799,  salePrice:579,  images:[img(10),img(11)], sizes:["S","M","L","XL"],           colors:["Beige","White","Sage","Slate Blue"],      stock:30, featured:true,  bestSeller:false, newArrival:false, tags:["linen","bermuda","refined"],         status:"active", rating:4.5, reviews:37  },
+  { id:"82", name:"Cycling Shorts",                slug:"cycling-shorts",                description:"Stretchy cycling shorts with compression fit. Great for cycling, yoga, and everyday athleisure.",                category:"shorts", price:599,  salePrice:449,  images:[img(12),img(13)], sizes:["XS","S","M","L","XL"],      colors:["Black","Navy","Pink","Olive"],            stock:55, featured:false, bestSeller:true,  newArrival:false, tags:["cycling","compression","athleisure"],status:"active", rating:4.6, reviews:66  },
+  { id:"83", name:"Denim Look Shorts",             slug:"denim-look-shorts",             description:"Casual denim-look fabric shorts with a frayed hem and button closure. Effortlessly cool summer staple.",         category:"shorts", price:699,  salePrice:499,  images:[img(14),img(15)], sizes:["XS","S","M","L","XL"],      colors:["Light Blue","Dark Blue","Black"],         stock:45, featured:false, bestSeller:false, newArrival:true,  tags:["denim","casual","summer"],           status:"active", rating:4.3, reviews:41  },
 ];
 
 export const testimonials = [
-  {
-    id: 1,
-    name: "Neha Sharma",
-    review: "Amazing quality and perfect fitting. Loved the fabric and design.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b047?w=100&q=80",
-    location: "Delhi",
-  },
-  {
-    id: 2,
-    name: "Pooja Verma",
-    review: "Superb collection! Exactly as shown in pictures. Will shop again.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80",
-    location: "Mumbai",
-  },
-  {
-    id: 3,
-    name: "Anjali Mehta",
-    review: "Very comfy and stylish. Highly recommended!",
-    rating: 4,
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80",
-    location: "Jaipur",
-  },
-  {
-    id: 4,
-    name: "Priya Gupta",
-    review: "Fast delivery and beautiful packaging. The kurti quality is top-notch!",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
-    location: "Bangalore",
-  },
-  {
-    id: 5,
-    name: "Ritu Singh",
-    review: "Best ethnic wear collection at such affordable prices. Love it!",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=80",
-    location: "Lucknow",
-  },
+  { id:1, name:"Neha Sharma",  review:"Amazing quality and perfect fitting. Loved the fabric and design.",                   rating:5, image:img(19,100,100), location:"Delhi"     },
+  { id:2, name:"Pooja Verma",  review:"Superb collection! Exactly as shown in pictures. Will shop again.",                   rating:5, image:img(21,100,100), location:"Mumbai"    },
+  { id:3, name:"Anjali Mehta", review:"Very comfy and stylish. Highly recommended!",                                         rating:4, image:img(27,100,100), location:"Jaipur"    },
+  { id:4, name:"Priya Gupta",  review:"Fast delivery and beautiful packaging. The kurti quality is top-notch!",              rating:5, image:img(10,100,100), location:"Bangalore" },
+  { id:5, name:"Ritu Singh",   review:"Best ethnic wear collection at such affordable prices. Love it!",                     rating:5, image:img(18,100,100), location:"Lucknow"   },
 ];
 
 export const collections = [
-  {
-    title: "Ethnic Suits",
-    subtitle: "Timeless Elegance",
-    slug: "suits",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&q=80",
-  },
-  {
-    title: "Cord Sets",
-    subtitle: "Comfort Meets Style",
-    slug: "cord-sets",
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=800&q=80",
-  },
-  {
-    title: "Dupatta Collection",
-    subtitle: "Add Grace To Every Look",
-    slug: "dupatta",
-    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80",
-  },
+  { title:"Ethnic Suits",        subtitle:"Timeless Elegance",       slug:"suits",     image:img(15, 800, 500) },
+  { title:"Cord Sets",           subtitle:"Comfort Meets Style",     slug:"cord-sets", image:img(22, 800, 500) },
+  { title:"Dupatta Collection",  subtitle:"Add Grace To Every Look", slug:"dupatta",   image:img(7,  800, 500) },
 ];

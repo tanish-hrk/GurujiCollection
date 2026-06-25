@@ -3,12 +3,12 @@ import Image from "next/image";
 import { Instagram } from "lucide-react";
 
 const posts = [
-  "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&q=80",
-  "https://images.unsplash.com/photo-1583391733981-8498408ee4b6?w=400&q=80",
-  "https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=400&q=80",
-  "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400&q=80",
-  "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400&q=80",
-  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80",
+  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1500917293891-ef815e43f2a0?w=400&h=400&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=400&h=400&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400&h=400&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=400&q=80&auto=format&fit=crop",
 ];
 
 export default function InstagramSection() {

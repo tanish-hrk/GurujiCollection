@@ -13,7 +13,7 @@ export default function AboutPage() {
       <div className="relative h-64 md:h-80 bg-background-secondary overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1200&q=80"
+            src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&h=600&q=80&auto=format&fit=crop"
             alt="About Guru Ji Collection"
             fill
             className="object-cover opacity-40"
@@ -54,7 +54,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-80 rounded-2xl overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1583391733981-8498408ee4b6?w=600&q=80"
+              src="https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&h=640&q=80&auto=format&fit=crop"
               alt="Our Collection"
               fill
               className="object-cover"

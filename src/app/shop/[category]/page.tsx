@@ -1,14 +1,15 @@
-"use client";
-import { use } from "react";
 import { products, categories } from "@/lib/data";
 import ProductCard from "@/components/ui/ProductCard";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
-  const { category } = use(params);
-  const cat = categories.find((c) => c.slug === category);
+export async function generateStaticParams() {
+  return categories.map((cat) => ({ category: cat.slug }));
+}
 
+export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
+  const { category } = await params;
+  const cat = categories.find((c) => c.slug === category);
   if (!cat) notFound();
 
   const filtered = products.filter((p) => p.category === category);
@@ -38,9 +39,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
         <p className="text-sm text-dark-text/60 mb-6">{filtered.length} products</p>
         {filtered.length === 0 ? (
           <div className="text-center py-20">
-            <p className="font-playfair text-2xl text-dark-text mb-3">
-              Coming Soon!
-            </p>
+            <p className="font-playfair text-2xl text-dark-text mb-3">Coming Soon!</p>
             <p className="text-sm text-dark-text/60 mb-6">
               We&apos;re adding amazing {cat.name} to our collection.
             </p>

@@ -13,7 +13,7 @@ const slides = [
     sub: "Premium Collection of\nKurti, Suits, Cord Sets & More",
     cta: "Shop Now",
     ctaHref: "/shop",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=900&q=85",
+    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=900&h=1100&q=80&auto=format&fit=crop",
   },
   {
     id: 2,
@@ -23,7 +23,17 @@ const slides = [
     sub: "Handcrafted Ethnic Suits\n& Embroidered Anarkalis",
     cta: "Explore Suits",
     ctaHref: "/shop/suits",
-    image: "https://images.unsplash.com/photo-1583391733981-8498408ee4b6?w=900&q=85",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900&h=1100&q=80&auto=format&fit=crop",
+  },
+  {
+    id: 3,
+    tag: "Fresh Arrivals",
+    heading: "Trendy &",
+    headingBold: "AFFORDABLE FASHION",
+    sub: "Palazzo Sets, Cord Sets\n& Printed Kurtis — Just In",
+    cta: "Shop New Arrivals",
+    ctaHref: "/shop?filter=new",
+    image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&h=1100&q=80&auto=format&fit=crop",
   },
 ];
 
