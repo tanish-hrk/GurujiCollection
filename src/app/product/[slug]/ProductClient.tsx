@@ -4,23 +4,28 @@ import { type Product } from "@/lib/data";
 import { products } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Share2, MessageCircle } from "lucide-react";
+import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Share2, MessageCircle, X, MapPin } from "lucide-react";
 import { formatPrice, getDiscountPercent } from "@/lib/utils";
-import { useCartStore, useWishlistStore } from "@/lib/store";
+import { useCartStore, useWishlistStore, useAddressStore, type AddressData } from "@/lib/store";
 import toast from "react-hot-toast";
 import ProductCard from "@/components/ui/ProductCard";
 
 export default function ProductClient({ product }: { product: Product }) {
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [selectedSize, setSelectedSize]   = useState(product.sizes[0]);
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState("description");
+  const [quantity, setQuantity]           = useState(1);
+  const [activeTab, setActiveTab]         = useState("description");
+  const [showAddrModal, setShowAddrModal] = useState(false);
+  const [addrForm, setAddrForm] = useState<AddressData>({
+    name: "", phone: "", address: "", city: "", state: "", pincode: "",
+  });
 
-  const { addItem } = useCartStore();
-  const { toggleItem, isInWishlist } = useWishlistStore();
+  const { addItem }                        = useCartStore();
+  const { toggleItem, isInWishlist }       = useWishlistStore();
+  const { savedAddress, saveAddress }      = useAddressStore();
   const inWishlist = isInWishlist(product.id);
-  const discount = getDiscountPercent(product.price, product.salePrice);
+  const discount   = getDiscountPercent(product.price, product.salePrice);
 
   const related = products
     .filter((p) => p.category === product.category && p.id !== product.id)
@@ -33,15 +38,33 @@ export default function ProductClient({ product }: { product: Product }) {
     toast.success(`Added to cart!`);
   };
 
-  const handleWhatsApp = () => {
+  const sendOnWhatsApp = (addr: AddressData) => {
     const msg = encodeURIComponent(
-      `Hi! I'd like to order:\n*${product.name}*\nSize: ${selectedSize}\nColor: ${selectedColor}\nQty: ${quantity}\nPrice: ${formatPrice(product.salePrice)}`
+      `Hi! I'd like to order:\n*${product.name}*\nSize: ${selectedSize}\nColor: ${selectedColor}\nQty: ${quantity}\nPrice: ${formatPrice(product.salePrice * quantity)}\n\n*Delivery Address:*\n${addr.name}\n${addr.phone}\n${addr.address}, ${addr.city}, ${addr.state} - ${addr.pincode}`
     );
     window.open(`https://wa.me/919310223461?text=${msg}`, "_blank");
   };
 
+  const handleWhatsApp = () => {
+    if (!savedAddress) {
+      setShowAddrModal(true);
+    } else {
+      sendOnWhatsApp(savedAddress);
+    }
+  };
+
+  const handleModalSend = () => {
+    if (!addrForm.name || !addrForm.phone || !addrForm.address) {
+      toast.error("Please fill Name, Phone, and Address");
+      return;
+    }
+    saveAddress(addrForm);
+    setShowAddrModal(false);
+    sendOnWhatsApp(addrForm);
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       {/* Breadcrumb */}
       <div className="bg-background-secondary border-b border-border py-3 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs">
@@ -312,6 +335,64 @@ export default function ProductClient({ product }: { product: Product }) {
           </div>
         )}
       </div>
+
+      {/* ── Address Modal for WhatsApp single-product order ── */}
+      {showAddrModal && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="font-playfair text-xl text-dark-text flex items-center gap-2">
+                  <MapPin size={18} className="text-rose-gold" /> Delivery Address
+                </h3>
+                <p className="text-xs text-dark-text/60 mt-0.5">
+                  Add your address to complete the WhatsApp order
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAddrModal(false)}
+                className="text-dark-text/40 hover:text-dark-text transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                { key: "name",    label: "Full Name *",    placeholder: "Your full name" },
+                { key: "phone",   label: "Phone Number *", placeholder: "+91 XXXXX XXXXX" },
+                { key: "address", label: "Address *",      placeholder: "House no., Street, Area" },
+                { key: "city",    label: "City",           placeholder: "City" },
+                { key: "state",   label: "State",          placeholder: "State" },
+                { key: "pincode", label: "Pincode",        placeholder: "6-digit pincode" },
+              ].map((field) => (
+                <div key={field.key}>
+                  <label className="block text-xs font-medium text-dark-text mb-1">{field.label}</label>
+                  <input
+                    type="text"
+                    placeholder={field.placeholder}
+                    value={addrForm[field.key as keyof AddressData]}
+                    onChange={(e) => setAddrForm((f) => ({ ...f, [field.key]: e.target.value }))}
+                    className="input-field w-full"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-3 mt-5">
+              <button onClick={() => setShowAddrModal(false)} className="btn-outline flex-1">
+                Cancel
+              </button>
+              <button
+                onClick={handleModalSend}
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-500 hover:bg-green-600 text-white transition-all rounded-sm text-sm font-semibold uppercase tracking-wide"
+              >
+                <MessageCircle size={16} /> Send on WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -26,6 +26,21 @@ type WishlistStore = {
   toggleItem: (product: Product) => void;
 };
 
+export type AddressData = {
+  name: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+};
+
+type AddressStore = {
+  savedAddress: AddressData | null;
+  saveAddress: (addr: AddressData) => void;
+  clearAddress: () => void;
+};
+
 export const useCartStore = create<CartStore>((set, get) => ({
   items: [],
   addItem: (product, size, color) => {
@@ -89,4 +104,10 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
       get().addItem(product);
     }
   },
+}));
+
+export const useAddressStore = create<AddressStore>((set) => ({
+  savedAddress: null,
+  saveAddress: (addr) => set({ savedAddress: addr }),
+  clearAddress: () => set({ savedAddress: null }),
 }));
